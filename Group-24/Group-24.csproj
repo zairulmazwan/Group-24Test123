@@ -5,4 +5,8 @@
     <RootNamespace>Group_24</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="Models\User.cs" />
+  </ItemGroup>
+
 </Project>
