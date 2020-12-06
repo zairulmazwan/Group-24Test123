@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Group_24.Pages.Users
 {
-    public class IndexModel : PageModel
+    public class CreateModel : PageModel
     {
+        [BindProperty]
         public User UserRecord { get; set; }
 
 
@@ -29,7 +30,7 @@ namespace Group_24.Pages.Users
 
                 command.Connection = connect;
                 //sets all new users to a modlevel of 0
-                command.CommandText = @"INSERT INTO Users (FirstName,LastName,EmailAddress,Password,ModLevel) VALUES ( @FName, @LName, @Email, @Password,'0'";
+                command.CommandText = @"INSERT INTO Users (FirstName,LastName,EmailAddress,Password) VALUES ( @FName, @LName, @Email, @Password)";
 
 
                 command.Parameters.AddWithValue("@FName", UserRecord.FirstName);
@@ -48,7 +49,7 @@ namespace Group_24.Pages.Users
             }
 
 
-            return RedirectToPage("/index");
+            return RedirectToPage("/Index");
         }
 
 
