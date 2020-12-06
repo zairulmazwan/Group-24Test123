@@ -19,8 +19,5 @@ namespace Group_24.Models
 
         public int ModLevel { get; set; }
 
-
-
-
     }
 }
