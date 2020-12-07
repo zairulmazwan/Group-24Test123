@@ -1,0 +1,34 @@
+﻿@page
+@model Group_24.Pages.Users.ViewModel
+@{
+}
+
+
+<div>
+    <table class="table table-active">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[0].UserID)</th>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[1].FirstName)</th>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[2].LastName)</th>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[3].EmailAddress)</th>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[4].Password)</th>
+                <th>@Html.DisplayNameFor(model => model.UserRecords[5].ModLevel)</th>
+
+
+            </tr>
+        </thead>
+        @for (int i=0; i < Model.UserRecords.Count; i++)
+        {
+    <tr>
+        <td>@Model.UserRecords[i].UserID</td>
+        <td>@Model.UserRecords[i].FirstName</td>
+        <td>@Model.UserRecords[i].LastName</td>
+        <td>@Model.UserRecords[i].EmailAddress</td>
+        <td>@Model.UserRecords[i].Password</td>
+        <td>@Model.UserRecords[i].ModLevel</td>
+    </tr>
+        }
+
+    </table>
+</div>
