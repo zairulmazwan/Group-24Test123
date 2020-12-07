@@ -18,7 +18,7 @@ namespace Group_24.Pages.Users
         [BindProperty(SupportsGet =true)]
         public string Type { get; set; }
 
-        public List<int> AccountType { get; set; } = new List<int> { 1, 2 };
+        public List<int> AccountType { get; set; } = new List<int> { 0, 1, 2 };
 
 
 
@@ -34,9 +34,10 @@ namespace Group_24.Pages.Users
                 command.Connection = connect;
                 //sets all new users to a modlevel of 0
                 command.CommandText = @"SELECT * FROM Users";
-                if (!string.IsNullOrEmpty(Type))
+
+                if (!(string.IsNullOrEmpty(Type) || Type == "ALL"))
                 {
-                    command.CommandText += "WHERE AccountType = @accType";
+                    command.CommandText += " WHERE ModLevel = @accType";
                     command.Parameters.AddWithValue("@accType", Convert.ToInt32(Type));
                 }
 
@@ -49,10 +50,10 @@ namespace Group_24.Pages.Users
                     User record = new User();
                     record.UserID = reader.GetInt32(0);
                     record.FirstName = reader.GetString(1);
-                    record.LastName = reader.GetString(1);
-                    record.EmailAddress = reader.GetString(1);
-                    record.Password = reader.GetString(1);
-                    record.ModLevel = reader.GetInt32(0);
+                    record.LastName = reader.GetString(2);
+                    record.EmailAddress = reader.GetString(3);
+                    record.Password = reader.GetString(4);
+                    record.ModLevel = reader.GetInt32(5);
 
 
                     UserRecords.Add(record);

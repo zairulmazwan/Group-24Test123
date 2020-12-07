@@ -8,18 +8,26 @@ namespace Group_24.Models
 {
     public class User    {
 
+        
         [Display(Name = "User ID")]
         public int UserID { get; set; }
 
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        
         [Display(Name = "Email Address")]
+        [Required]
+        [EmailAddress]
         public string EmailAddress { get; set; }
 
+        [Required]
+        [Key]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
