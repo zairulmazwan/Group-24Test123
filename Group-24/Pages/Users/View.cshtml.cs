@@ -15,6 +15,13 @@ namespace Group_24.Pages.Users
 
         public List<User> UserRecords { get; set; }
 
+        [BindProperty(SupportsGet =true)]
+        public string Type { get; set; }
+
+        public List<int> AccountType { get; set; } = new List<int> { 1, 2 };
+
+
+
         public IActionResult OnGet()
         {
             string G24database_connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=G24Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -27,6 +34,11 @@ namespace Group_24.Pages.Users
                 command.Connection = connect;
                 //sets all new users to a modlevel of 0
                 command.CommandText = @"SELECT * FROM Users";
+                if (!string.IsNullOrEmpty(Type))
+                {
+                    command.CommandText += "WHERE AccountType = @accType";
+                    command.Parameters.AddWithValue("@accType", Convert.ToInt32(Type));
+                }
 
                 SqlDataReader reader = command.ExecuteReader();
 

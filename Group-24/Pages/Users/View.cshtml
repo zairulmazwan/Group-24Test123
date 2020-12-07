@@ -5,6 +5,21 @@
 
 
 <div>
+    <p>Filter By Mod Level : </p>
+    <form>
+        <select type="text" asp-for="Type" style="width:50px;">
+            <option>ALL</option>
+            @foreach(var item in Model.AccountType)
+            {
+                <option>@item</option>
+            }
+        </select>
+        <input type="submit" value="Filter" />
+    </form>
+</div>
+<br/>
+
+<div>
     <table class="table table-active">
         <thead>
             <tr>
